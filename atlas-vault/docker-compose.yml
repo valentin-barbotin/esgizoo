@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+    zoodb:
+        container_name: zoodatabase
+        build: ./core
+        ports:
+            - ${DB_PORT}:5432
+        volumes:
+            - ./zoodb:/var/lib/zoodb/data
+        environment:
+            - POSTGRES_DB=zoodb
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+
+volumes:
+    zoodb:
+        external: true
